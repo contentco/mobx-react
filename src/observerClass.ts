@@ -34,14 +34,14 @@ export function makeClassComponentObserver(
 
     if (target.componentWillReact)
         throw new Error("The componentWillReact life-cycle event is no longer supported")
-    if (componentClass["__proto__"] !== PureComponent) {
-        if (!target.shouldComponentUpdate) target.shouldComponentUpdate = observerSCU
-        else if (target.shouldComponentUpdate !== observerSCU)
-            // n.b. unequal check, instead of existence check, as @observer might be on superclass as well
-            throw new Error(
-                "It is not allowed to use shouldComponentUpdate in observer based components."
-            )
-    }
+    // if (componentClass["__proto__"] !== PureComponent) {
+    //     if (!target.shouldComponentUpdate) target.shouldComponentUpdate = observerSCU
+    //     else if (target.shouldComponentUpdate !== observerSCU)
+    //         // n.b. unequal check, instead of existence check, as @observer might be on superclass as well
+    //         throw new Error(
+    //             "It is not allowed to use shouldComponentUpdate in observer based components."
+    //         )
+    // }
 
     // this.props and this.state are made observable, just to make sure @computed fields that
     // are defined inside the component, and which rely on state or props, re-compute if state or props change
